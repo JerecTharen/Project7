@@ -1,0 +1,20 @@
+
+mixin textInput(label, idName)
+    label(for=idName)= label
+    input(id=idName, type="text", name=idName, required)
+mixin emailInput(label, idName)
+    label(for=idName)= label
+    input(type="email", id=idName, name=idName, required)
+mixin ageInput(label, idName)
+    label(for=idName)= label
+    input(type="number", id=idName, name=idName, required)
+
+mixin textInputW-Value(label, idName, value)
+    label(for=idName)= label
+    input(id=idName, type="text", name=idName, value=value, required)
+mixin emailInputW-Value(label, idName, value)
+    label(for=idName)= label
+    input(id=idName, type="email", name=idName, value=value, required)
+mixin ageInputW-Value(label, idName, value)
+    label(for=idName)= label
+    input(id=idName, type="number", name=idName, value=value, required)

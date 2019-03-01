@@ -1,0 +1,12 @@
+html
+    include mixins
+    head
+        title Project 6
+    body
+        div#containsAll
+            h1 Welcome to User App
+            form(action='/addUser' method='POST')
+                +textInput('User Name: ', 'userName')
+                +emailInput('Email: ', 'email')
+                +ageInput('Age: ', 'age')
+                button(type='submit') SUBMIT
