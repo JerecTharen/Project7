@@ -30,6 +30,22 @@ app.get('/', (req, resp)=>{
 app.get('/users', (req, resp)=>{
     resp.render('users', {allUsers: userFile.users});
 });
+app.get('/users/:uid', (req, resp)=>{
+    let user;
+    let found = false;
+    for(let i = 0; i < userFile.users.length; i++){
+        // console.log(userFile.users[i]);
+        if(userFile.users[i].uid===req.params.uid){
+            found = true;
+            user = userFile.users[i];
+            // console.log(user);
+            resp.render('userEdit', {uid: req.params.uid, user: user});
+        }
+    }
+    if(!found){
+        resp.send('We could not find that user');
+    }
+});
 
 app.post('/addUser', (req, resp)=>{
     numUsers++;
@@ -40,6 +56,41 @@ app.post('/addUser', (req, resp)=>{
         users: userFile.users
     };
     newJSON.users.push(userData);
+    console.log(newJSON);
+    fs.writeFile('./users/usersFile.json', JSON.stringify(newJSON), (err)=>{
+        if (err) throw err;
+        resp.redirect('/users');
+    });
+});
+app.post('/users/:uid', (req, resp)=>{
+    let userData = req.body;
+    userData.uid = `${userData.userName}${numUsers}`;
+    let newJSON = {
+        numUsers: numUsers,
+        users: userFile.users
+    };
+    for(let i = 0; i<newJSON.users.length; i++){
+        if(newJSON.users[i].uid === req.params.uid){
+            newJSON.users[i] = userData;
+        }
+    }
+    console.log(newJSON);
+    fs.writeFile('./users/usersFile.json', JSON.stringify(newJSON), (err)=>{
+        if (err) throw err;
+        resp.redirect('/users');
+    });
+});
+app.delete('/users/:uid',(req, resp)=>{
+    let userData = req.body;
+    let newJSON = {
+        numUsers: numUsers,
+        users: userFile.users
+    };
+    for(let i = 0; i<newJSON.users.length; i++){
+        if(newJSON.users[i].uid === req.params.uid){
+            newJSON.splice(i, 1);
+        }
+    }
     console.log(newJSON);
     fs.writeFile('./users/usersFile.json', JSON.stringify(newJSON), (err)=>{
         if (err) throw err;

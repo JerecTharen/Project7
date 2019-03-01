@@ -2,3 +2,15 @@
 .userTable td, .userTable th{
     border: solid black 3px;
 }
+.colForm{
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    display: block;
+}
+/*.colForm input, .colForm button{*/
+    /*width: 100px;*/
+/*}*/
+button a{
+    color: black;
+    text-decoration: none;
+}

@@ -3,7 +3,7 @@ include header
 body
     div#containsAll
         h1 Welcome to User App
-        form(action='/addUser' method='POST')
+        form.colForm(action='/addUser' method='POST')
             +textInput('User Name: ', 'userName')
             +emailInput('Email: ', 'email')
             +ageInput('Age: ', 'age')

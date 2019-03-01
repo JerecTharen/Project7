@@ -1,0 +1,11 @@
+
+include header
+body
+    div#containsAll
+        h1= user.userName
+        h2 UserID: #{uid}
+        form.colForm(action='/users/'+uid, method='post')
+            +textInputW-Value('Username: ', 'userName', user.userName)
+            +emailInputW-Value('Email: ', 'email', user.email)
+            +ageInputW-Value('Age: ', 'age', user.age)
+            button(type="submit") SUBMIT
