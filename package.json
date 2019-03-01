@@ -1,0 +1,24 @@
+{
+  "name": "project6",
+  "version": "1.0.0",
+  "description": "A node app for managing users",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JerecTharen/Project6.git"
+  },
+  "author": "JerecTharen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JerecTharen/Project6/issues"
+  },
+  "homepage": "https://github.com/JerecTharen/Project6#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pug": "^2.0.3"
+  }
+}
