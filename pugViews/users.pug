@@ -1,0 +1,15 @@
+
+include header
+body
+    h1 Here is the list of all users:
+    table.userTable
+        tr
+            th Username
+            th Email
+            th Age
+
+        each user in allUsers
+            tr
+                td #{user.userName}
+                td #{user.email}
+                td #{user.age}

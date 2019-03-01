@@ -28,7 +28,7 @@ app.get('/', (req, resp)=>{
     resp.render('index');
 });
 app.get('/users', (req, resp)=>{
-    
+    resp.render('users', {allUsers: userFile.users});
 });
 
 app.post('/addUser', (req, resp)=>{
