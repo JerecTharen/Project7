@@ -5,6 +5,18 @@ const fs = require('fs');
 const app = express();
 const bodyParser = require('body-parser');
 const userFile = require('./users/usersFile');
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/users', {useNewUrlParser: true});
+const db = mongoose.connection;
+const userSchema = new mongoose.Schema({
+    userName: String,
+    email: String,
+    age: String
+});
+const user = mongoose.model('usercollections', userSchema);
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', ()=> console.log('db connected'));
 
 const port = 3000;
 let numUsers;
@@ -28,7 +40,12 @@ app.get('/', (req, resp)=>{
     resp.render('index');
 });
 app.get('/users', (req, resp)=>{
-    resp.render('users', {allUsers: userFile.users});
+    console.log('in users');
+    user.find({}, (err, data)=>{
+        if(err) return console.log(`Opps: ${err}`);
+        // console.log(`data -- ${JSON.stringify(data)}`);
+        resp.render('users', {allUsers: data});
+    });
 });
 app.get('/users/:uid', (req, resp)=>{
     let user;
