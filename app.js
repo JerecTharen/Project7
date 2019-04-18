@@ -1,9 +1,10 @@
 
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
+// const fs = require('fs');
 const app = express();
 const bodyParser = require('body-parser');
+const querystring = require('querystring');
 const userFile = require('./users/usersFile');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/users', {useNewUrlParser: true});
@@ -41,12 +42,41 @@ app.get('/', (req, resp)=>{
 });
 app.get('/users', (req, resp)=>{
     // console.log('in users');
-    user.find({}, (err, data)=>{
-        if(err) return console.log(`Opps: ${err}`);
-        // console.log(`data -- ${JSON.stringify(data)}`);
-        // console.log(data[0]._id);
-        resp.render('users', {allUsers: data});
-    });
+    let query = req.query.searchParam;
+    let sortingUp = req.query.sortingUp;
+    let field = req.query.field;
+    console.log(req.query);
+    if(query || field){
+        let find = {};
+        let options ={};
+        if(query){
+            find.userName = query;
+        }
+        if(field){
+            let sort = {};
+            if(sortingUp){
+                sort[field] = -1;
+            }
+            else{
+                sort[field] = 1;
+            }
+            options.sort = sort;
+        }
+        user.find(find, options, (err, data)=>{
+            if(err) return console.log(`Opps: ${err}`);
+            // console.log(`data -- ${JSON.stringify(data)}`);
+            // console.log(data[0]._id);
+            resp.render('users', {allUsers: data, searchParam: query});
+        });
+    }
+    else{
+        user.find({}, (err, data)=>{
+            if(err) return console.log(`Opps: ${err}`);
+            // console.log(`data -- ${JSON.stringify(data)}`);
+            // console.log(data[0]._id);
+            resp.render('users', {allUsers: data, searchParam: ''});
+        });
+    }
 });
 app.get('/users/:uid', (req, resp)=>{
     user.findById(req.params.uid, (err, data)=>{
@@ -60,7 +90,7 @@ app.get('/users/:uid', (req, resp)=>{
 
 });
 app.get('/delete/:uid', (req, resp)=>{
-    user.deleteOne({_id: req.param.uid}, (err)=>{
+    user.findOneAndDelete({_id: req.params.uid}, (err)=>{
         if(err) return console.error(err);
         resp.redirect('/users');
     });
@@ -75,25 +105,13 @@ app.post('/addUser', (req, resp)=>{
     // let userData = req.body;
     newUser.save((err, addedUser)=>{
         if(err) return console.error(err);
-        console.log(addedUser.userName + ' saved to user collection');
+        // console.log(addedUser.userName + ' saved to user collection');
         resp.redirect('/users');
     });
 });
 app.post('/users/:uid', (req, resp)=>{
-    let userData = req.body;
-    userData.uid = `${userData.userName}${numUsers}`;
-    let newJSON = {
-        numUsers: numUsers,
-        users: userFile.users
-    };
-    for(let i = 0; i<newJSON.users.length; i++){
-        if(newJSON.users[i].uid === req.params.uid){
-            newJSON.users[i] = userData;
-        }
-    }
-    console.log(newJSON);
-    fs.writeFile('./users/usersFile.json', JSON.stringify(newJSON), (err)=>{
-        if (err) throw err;
+    user.findOneAndUpdate({_id: req.params.uid}, req.body, (err)=>{
+        if(err) return console.error(err);
         resp.redirect('/users');
     });
 });

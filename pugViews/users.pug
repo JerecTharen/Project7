@@ -2,11 +2,20 @@
 include header
 body
     h1 Here is the list of all users:
+    div#inlineForms
+        form(action='/users' method='GET')
+            +textInputW-Value("Search For: ", "searchParam", searchParam)
+            button(type='submit') SUBMIT
+        form(action='/users' method='GET')
+            button(type='submit') CLEAR
     table.userTable
         tr
             th Username
+                i#sortUser(class="fas fa-sort-up")
             th Email
+                i#sortEmail(class="fas fa-sort-up")
             th Age
+                i#sortAge(class="fas fa-sort-up")
 
         each user in allUsers
             tr
@@ -19,3 +28,6 @@ body
                 td
                     button
                         a(href='/delete/'+user._id) DELETE
+    a(href='/') Back to Add User
+    script
+        include ../public/users.js
