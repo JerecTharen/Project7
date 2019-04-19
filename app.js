@@ -12,7 +12,9 @@ const db = mongoose.connection;
 const userSchema = new mongoose.Schema({
     userName: String,
     email: String,
-    age: String
+    age: String,
+    firstName: String,
+    lastName: String,
 });
 const user = mongoose.model('usercollections', userSchema);
 
@@ -100,7 +102,9 @@ app.post('/addUser', (req, resp)=>{
     let newUser = new user({
         userName: req.body.userName,
         email: req.body.email,
-        age: req.body.age.toString()
+        age: req.body.age.toString(),
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
     });
     // let userData = req.body;
     newUser.save((err, addedUser)=>{

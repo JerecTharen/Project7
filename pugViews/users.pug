@@ -16,12 +16,18 @@ body
                 i#sortEmail(class="fas fa-sort-up")
             th Age
                 i#sortAge(class="fas fa-sort-up")
+            th First Name
+                i#sortAgFirst(class="fas fa-sort-up")
+            th Last Name
+                i#sortLast(class="fas fa-sort-up")
 
         each user in allUsers
             tr
                 td #{user.userName}
                 td #{user.email}
                 td #{user.age}
+                td #{user.firstName}
+                td #{user.lastName}
                 td
                     button
                         a(href='/users/'+user._id) EDIT
