@@ -1,11 +1,9 @@
 
 const express = require('express');
 const path = require('path');
-// const fs = require('fs');
 const app = express();
 const bodyParser = require('body-parser');
 const querystring = require('querystring');
-const userFile = require('./users/usersFile');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/users', {useNewUrlParser: true});
 const db = mongoose.connection;
@@ -22,13 +20,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', ()=> console.log('db connected'));
 
 const port = 3000;
-let numUsers;
-if(userFile.numUsers){
-    numUsers = userFile.numUsers;
-}
-else{
-    numUsers = 0;
-}
 
 
 app.use(express.static('./public'));
