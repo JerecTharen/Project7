@@ -4,22 +4,42 @@ body
     h1 Here is the list of all users:
     div#inlineForms
         form(action='/users' method='GET')
-            +textInputW-Value("Search For: ", "searchParam", searchParam)
+            +textInputW-Value("Search For User: ", "searchParam", searchParam)
             button(type='submit') SUBMIT
         form(action='/users' method='GET')
             button(type='submit') CLEAR
     table.userTable
         tr
             th Username
-                i#sortUser(class="fas fa-sort-up")
+                a#sortuserNameLink(href="/users")
+                    if sortingUp
+                        i#sortUser(class="fas fa-sort-up")
+                    else
+                        i#sortUser(class="fas fa-sort-down")
             th Email
-                i#sortEmail(class="fas fa-sort-up")
+                a#sortemailLink(href="/users")
+                    if sortingUp
+                        i#sortEmail(class="fas fa-sort-up")
+                    else
+                        i#sortEmail(class="fas fa-sort-down")
             th Age
-                i#sortAge(class="fas fa-sort-up")
+                a#sortageLink(href="/users")
+                    if sortingUp
+                        i#sortAge(class="fas fa-sort-up")
+                    else
+                        i#sortAge(class="fas fa-sort-down")
             th First Name
-                i#sortAgFirst(class="fas fa-sort-up")
+                a#sortfirstNameLink(href="/users")
+                    if sortingUp
+                        i#sortFirst(class="fas fa-sort-up")
+                    else
+                        i#sortFirst(class="fas fa-sort-down")
             th Last Name
-                i#sortLast(class="fas fa-sort-up")
+                a#sortlastNameLink(href="/users")
+                    if sortingUp
+                        i#sortLast(class="fas fa-sort-up")
+                    else
+                        i#sortLast(class="fas fa-sort-down")
 
         each user in allUsers
             tr

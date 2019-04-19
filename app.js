@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
 });
-const user = mongoose.model('usercollections', userSchema);
+const user = mongoose.model('userCollections', userSchema);
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', ()=> console.log('db connected'));
@@ -46,8 +46,10 @@ app.get('/users', (req, resp)=>{
     // console.log('in users');
     let query = req.query.searchParam;
     let sortingUp = req.query.sortingUp;
+    let sortBool;
+    sortBool = sortingUp !== 'true';
     let field = req.query.field;
-    console.log(req.query);
+    // console.log(req.query);
     if(query || field){
         let find = {};
         let options ={};
@@ -56,19 +58,20 @@ app.get('/users', (req, resp)=>{
         }
         if(field){
             let sort = {};
-            if(sortingUp){
+            if(sortingUp === 'true'){
                 sort[field] = -1;
             }
             else{
                 sort[field] = 1;
             }
             options.sort = sort;
+            // console.log(options);
         }
-        user.find(find, options, (err, data)=>{
+        user.find(find, null, options, (err, data)=>{
             if(err) return console.log(`Opps: ${err}`);
             // console.log(`data -- ${JSON.stringify(data)}`);
             // console.log(data[0]._id);
-            resp.render('users', {allUsers: data, searchParam: query});
+            resp.render('users', {allUsers: data, searchParam: query, sortingUp: sortBool});
         });
     }
     else{

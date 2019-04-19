@@ -2,10 +2,10 @@
 .userTable td, .userTable th{
     border: solid black 3px;
 }
-.colForm{
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    display: block;
+form.colForm{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
 }
 /*.colForm input, .colForm button{*/
     /*width: 100px;*/
@@ -17,4 +17,11 @@ button a{
 
 #inlineForms{
     display: flex;
+}
+
+th a{
+    color: black;
+}
+th a:active{
+    color: black;
 }
