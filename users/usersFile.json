@@ -1,1 +1,86 @@
-{"numUsers":6,"users":[{"userName":"JerecTharen","email":"kf7ags@gmail.com","age":"24","uid":"JerecTharen1"},{"userName":"GiladTharen","email":"kf7ags@hotmail.com","age":"24","uid":"GiladTharen2"},{"userName":"MaldenTharen","email":"jacob.a.bennett@aggiemail.usu.edu","age":"24","uid":"MaldenTharen3"},{"userName":"JerecThule","email":"kf7ags@n7bsa.org","age":"24","uid":"JerecThule4"},{"userName":"MaldenTharen","email":"kf7ags@myMail.com","age":"24","uid":"MaldenTharen6"}]}
+{ 
+    "_id" : ObjectId("5cb74e9c991d73a25dd2f8e4"), 
+    "userName" : "JerecTharen", 
+    "email" : "kf7ags@gmail.com", 
+    "age" : "24", 
+    "firstName" : "Jerec", 
+    "lastName" : "Tharen"
+}
+{ 
+    "_id" : ObjectId("5cb74e9c991d73a25dd2f8e5"), 
+    "userName" : "GiladTharen", 
+    "email" : "kf7ags@hotmail.com", 
+    "age" : "24", 
+    "firstName" : "Gilad", 
+    "lastName" : "Tharen"
+}
+{ 
+    "_id" : ObjectId("5cb74e9c991d73a25dd2f8e6"), 
+    "userName" : "MaldenTharen", 
+    "email" : "jacob.a.bennett@aggiemail.usu.edu", 
+    "age" : "24", 
+    "firstName" : "Malden", 
+    "lastName" : "Tharen"
+}
+{ 
+    "_id" : ObjectId("5cb74e9c991d73a25dd2f8e7"), 
+    "userName" : "JerecThule", 
+    "email" : "kf7ags@n7bsa.org", 
+    "age" : "24", 
+    "firstName" : "Jerec", 
+    "lastName" : "Thule"
+}
+{ 
+    "_id" : ObjectId("5cb9d69c2cd9643fe71610f8"), 
+    "userName" : "AralinTharen", 
+    "email" : "aralin@gmail.com", 
+    "age" : "23", 
+    "firstName" : "Aralin", 
+    "lastName" : "Tharen", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5cb9d92cf8fe9e40b8c897e8"), 
+    "userName" : "CoolGuy47", 
+    "email" : "mrAwesome@fakeEmail.org", 
+    "age" : "107", 
+    "firstName" : "Jacob", 
+    "lastName" : "Bennett", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5cb9d944f8fe9e40b8c897e9"), 
+    "userName" : "AralinThul", 
+    "email" : "AralinThule@gmail.com", 
+    "age" : "22", 
+    "firstName" : "Aralin", 
+    "lastName" : "Thule", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5cb9d959f8fe9e40b8c897ea"), 
+    "userName" : "MaldenThule", 
+    "email" : "malden@thule.com", 
+    "age" : "45", 
+    "firstName" : "Malden", 
+    "lastName" : "Thule", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5cb9d97df8fe9e40b8c897eb"), 
+    "userName" : "GiladThule", 
+    "email" : "gilad@thule.com", 
+    "age" : "30", 
+    "firstName" : "Gilad", 
+    "lastName" : "Thule", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5cb9db0448b26b4230fc1207"), 
+    "userName" : "MrAwesome", 
+    "email" : "awesomeMan1987@fakeEmail.com", 
+    "age" : "5", 
+    "firstName" : "Jacob", 
+    "lastName" : "Bennett", 
+    "__v" : NumberInt(0)
+}
